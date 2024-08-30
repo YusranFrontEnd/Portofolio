@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: grid;
+        grid-template-columns: 60% 30%;
+        align-items: center;
+        min-height: 100vh;
+        line-height: 1.5em;
+      }
+      article img {
+        width: 120px;
+        border-radius: 20px;
+      }
+      section {
+        margin-left: 320px;
+        margin-bottom: 20px;
+      }
+
+      .social a {
+        text-decoration: none;
+        color: black;
+      }
+      section button {
+        background: rgb(202, 111, 51);
+        padding: 3px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      #dialog {
+        position: absolute;
+        width: 300px;
+        top: 24%;
+        left: 46%;
+        padding-bottom: 70px;
+        transform: translate(-50%, -50%);
+        line-height: 1em;
+        background-color: black;
+        color: aliceblue;
+        font-size: 15px;
+        line-height: 1.5em;
+        border: 6px solid;
+      }
+      .social a:hover {
+        opacity: 0.7;
+      }
+
+      #dialog button {
+        margin: 10px;
+
+        padding: 4px;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+
+        z-index: 10;
+      }
+
+      .dropdown-content a {
+        color: white;
+
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        color: blue;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      @media (width < 600px) {
+        body {
+          grid-template-columns: 1fr;
+        }
+
+        article {
+          position: absolute;
+          margin-left: 80px;
+          margin-bottom: 40px;
+        }
+        section {
+          width: 30%;
+        }
+        #dialog {
+          top: 100px;
+        }
+      }
+    </style>
+
+    <section>
+      <h1>Yusran</h1>
+      <p>Front End Web Development</p>
+      <p>Tech : Html | Css | Js | React | Vue | Tailwind</p>
+      <div class="social">
+        <p>
+          Contact : <a href="#">Facebook</a> | <a href="#">Youtube</a> |
+          <a href="#">X</a> | <a href="#">Ig</a> |
+          <a href="#">Github</a>
+        </p>
+        <button onclick="dialog.showModal()">Who am I?</button>
+      </div>
+    </section>
+
+    <article>
+      <img src="y.jpeg" alt="" />
+    </article>
+
+    <dialog id="dialog">
+      <p>@yusran-cmd:$~ cd Portofolio</p>
+      <p>Vintage| Authentic| Classic| Simple| Unique</p>
+      <p>Otodidac| Project Base Learning| Freelancer</p>
+
+      <div class="dropdown">
+        <button>Project</button>
+        <div class="dropdown-content">
+          <a href="https://web-hairbugx.vercel.app/" target="_blank"
+            >-Website</a
+          >
+          <a href="#option2">-Blog</a>
+          <a href="#option3">-ecommerse</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button>Document</button>
+        <div class="dropdown-content">
+          <a href="#option1" data-value="option1">-CV</a>
+          <a href="#option2" data-value="option2">-Certificate</a>
+          <a href="#option3" data-value="option3">-Option 3</a>
+        </div>
+      </div>
+      <button onclick="dialog.close()">Exit?</button>
+    </dialog>
+
+    <script>
+      const validOptions = ["option1", "option2", "option3"];
+      const links = document.querySelectorAll(".dropdown-content a");
+      const selectedOptionDisplay = document.getElementById("selectedOption");
+
+      // Add event listeners to each link in the dropdown
+      links.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent default anchor behavior
+
+          const selectedValue = event.target.getAttribute("data-value");
+
+          // Check if the selected value is valid using ES7 Array.prototype.includes()
+          if (validOptions.includes(selectedValue)) {
+            selectedOptionDisplay.textContent = `Selected: ${selectedValue}`;
+          } else {
+            selectedOptionDisplay.textContent = "Selected: Invalid Option";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
