@@ -3,28 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Portofolio</title>
   </head>
   <body>
     <style>
       * {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
       }
       body {
-        display: grid;
-        grid-template-columns: 60% 30%;
+        display: flex;
         align-items: center;
+        justify-content: center;
         min-height: 100vh;
-        line-height: 1.5em;
       }
-      article img {
-        width: 120px;
+      article {
+        max-width: 30%;
         border-radius: 20px;
       }
       section {
-        margin-left: 320px;
-        margin-bottom: 20px;
+        flex: 1;
+        max-width: 40%;
+        line-height: 2em;
+      }
+      img {
+        width: 120px;
+        border-radius: 3px 58%;
       }
 
       .social a {
@@ -33,76 +38,58 @@
       }
       section button {
         background: rgb(202, 111, 51);
-        padding: 3px;
+        padding: 8px;
         border-radius: 5px;
         margin-top: 10px;
       }
+      #dialog button {
+        padding: 4px;
+        margin-top: 5px;
+      }
       #dialog {
-        position: absolute;
+        justify-self: center;
         width: 300px;
-        top: 24%;
-        left: 46%;
-        padding-bottom: 70px;
-        transform: translate(-50%, -50%);
+        padding: 20px;
+        top: 20px;
         line-height: 1em;
         background-color: black;
-        color: aliceblue;
-        font-size: 15px;
-        line-height: 1.5em;
-        border: 6px solid;
+        color: white;
+        font-size: 1rem;
       }
       .social a:hover {
-        opacity: 0.7;
+        font-weight: bold;
       }
 
-      #dialog button {
-        margin: 10px;
-
-        padding: 4px;
-      }
-
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-
-        z-index: 10;
-      }
-
-      .dropdown-content a {
-        color: white;
-
+      #dialog a {
         text-decoration: none;
-        display: block;
+        color: white;
       }
-
-      .dropdown-content a:hover {
-        color: blue;
+      #dialog a:hover {
+        font-weight: bold;
+        color: white;
       }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
+      i {
+        color: rgb(27, 214, 27);
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      img {
+        animation: pulse 3s infinite;
       }
 
       @media (width < 600px) {
-        body {
-          grid-template-columns: 1fr;
-        }
-
-        article {
-          position: absolute;
-          margin-left: 80px;
-          margin-bottom: 40px;
-        }
         section {
-          width: 30%;
-        }
-        #dialog {
-          top: 100px;
+          margin: 20px;
+          line-height: normal;
         }
       }
     </style>
@@ -113,9 +100,14 @@
       <p>Tech : Html | Css | Js | React | Vue | Tailwind</p>
       <div class="social">
         <p>
-          Contact : <a href="#">Facebook</a> | <a href="#">Youtube</a> |
-          <a href="#">X</a> | <a href="#">Ig</a> |
-          <a href="#">Github</a>
+          Contact :
+          <a href="https://www.youtube.com/@Yusran_Uca" target="_blank"
+            >Youtube</a
+          >
+          |
+          <a href="https://www.instagram.com/yusran_uca" target="_blank">Ig</a>
+          |
+          <a href="https://github.com/YusranFrontEnd" target="_blank">Github</a>
         </p>
         <button onclick="dialog.showModal()">Who am I?</button>
       </div>
@@ -126,52 +118,25 @@
     </article>
 
     <dialog id="dialog">
-      <p>@yusran-cmd:$~ cd Portofolio</p>
-      <p>Vintage| Authentic| Classic| Simple| Unique</p>
-      <p>Otodidac| Project Base Learning| Freelancer</p>
+      <p><i>@yusran-cmd:$~</i> cd Portofolio</p>
+      <p>Vintage| Authentic| Classic| Freelancer</p>
+      <p>
+        Document : <a href="#" target="_blank">CV</a> |
+        <a
+          href="asset/certificate.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Certificate</a
+        >
+      </p>
+      <p>
+        Project :
+        <a href="https://web-hairbugx.vercel.app/" target="_blank">Website</a> |
+        <a href="#" target="_blank">Blog</a> |
+        <a href="#" target="_blank">Ecommerce</a>
+      </p>
 
-      <div class="dropdown">
-        <button>Project</button>
-        <div class="dropdown-content">
-          <a href="https://web-hairbugx.vercel.app/" target="_blank"
-            >-Website</a
-          >
-          <a href="#option2">-Blog</a>
-          <a href="#option3">-ecommerse</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <button>Document</button>
-        <div class="dropdown-content">
-          <a href="#option1" data-value="option1">-CV</a>
-          <a href="#option2" data-value="option2">-Certificate</a>
-          <a href="#option3" data-value="option3">-Option 3</a>
-        </div>
-      </div>
       <button onclick="dialog.close()">Exit?</button>
     </dialog>
-
-    <script>
-      const validOptions = ["option1", "option2", "option3"];
-      const links = document.querySelectorAll(".dropdown-content a");
-      const selectedOptionDisplay = document.getElementById("selectedOption");
-
-      // Add event listeners to each link in the dropdown
-      links.forEach((link) => {
-        link.addEventListener("click", (event) => {
-          event.preventDefault(); // Prevent default anchor behavior
-
-          const selectedValue = event.target.getAttribute("data-value");
-
-          // Check if the selected value is valid using ES7 Array.prototype.includes()
-          if (validOptions.includes(selectedValue)) {
-            selectedOptionDisplay.textContent = `Selected: ${selectedValue}`;
-          } else {
-            selectedOptionDisplay.textContent = "Selected: Invalid Option";
-          }
-        });
-      });
-    </script>
   </body>
 </html>
